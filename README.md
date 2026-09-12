@@ -20,3 +20,8 @@ Forever Hotel Integrated Hotel Management System.
 SENG 34213 - System Development Project  
 Software Engineering Teaching Unit  
 University of Kelaniya
+
+## Development Standards
+
+- [Frontend UI Standard](standards/frontend-ui-standard.md)  
+  Defines the shared frontend UI approach for Forever Hotel, including Ant Design usage, Figma structure and colour guidance, component consistency, and frontend review rules.
