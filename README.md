@@ -23,5 +23,14 @@ University of Kelaniya
 
 ## Development Standards
 
+- [Repository Structure Standard](standards/repository-structure.md)  
+  Defines the shared repository organization used across Forever Hotel subsystem and shared repositories.
+
+- [Frontend Folder Structure Standard](standards/frontend-folder-structure.md)  
+  Defines the standard Next.js frontend folder structure, feature boundaries, route organization, testing structure, and shared frontend responsibilities.
+
+- [Backend Folder Structure Standard](standards/backend-folder-structure.md)  
+  Defines the standard NestJS backend folder structure, domain modules, database repositories, configuration, messaging, realtime, health, and testing organization.
+
 - [Frontend UI Standard](standards/frontend-ui-standard.md)  
   Defines the shared frontend UI approach for Forever Hotel, including Ant Design usage, Figma structure and colour guidance, component consistency, and frontend review rules.
