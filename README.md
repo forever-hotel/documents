@@ -1,51 +1,41 @@
 # Forever Hotel Management System - Central Final QA Deliverables
 
-**Prepared:** 25 October 2026 | **Course:** SENG 34213, University of Kelaniya | **Format:** black and white.
+**Prepared:** 8 November 2026 | **Course:** SENG 34213, University of Kelaniya | **Format:** black and white.
 
-These four files follow the course guideline Section 10.1 and consolidate **all six** supplied subsystem packages: Hotel Website (HW), Manager Dashboard (MAD), Front Desk (FDS), Food Ordering and Service Requests (FOSS), Kitchen Management (KMS), and Worker Management (WKMS).
+These four files follow the course guideline Section 10.1 and consolidate **all six** subsystem repositories and companion shared services across the `forever-hotel` GitHub organization: Hotel Website (HW), Manager Dashboard (MAD), Front Desk (FDS), Food Ordering and Service Requests (FOSS), Kitchen Management (KMS), Worker Management (WKMS), plus shared platform repositories (`api-gateway`, `websocket-service`, `infra`).
 
 ## Required four PDFs (submit as listed)
 
-- `testing/coverage-sprint8.pdf` - multi-subsystem test and scope/coverage evidence, followed by **all six full original coverage reports**.
-- `testing/test-register.pdf` - cross-service test inventory and traceability limits, followed by **all six full original test-case PDFs**.
-- `security/owasp-checklist.pdf` - cross-service OWASP findings and unresolved risks, followed by **all six full original security PDFs**.
-- `testing/performance-report.pdf` - actual performance evidence gaps and next steps, followed by **all six full original performance PDFs**.
+- `testing/coverage-sprint8.pdf` - multi-subsystem test and scope/coverage evidence across all six subsystems and shared services.
+- `testing/test-register.pdf` - cross-service test inventory and traceability limits (**307 recorded cases**: **264 suite-backed passing**, **43 unverified / not tested**).
+- `security/owasp-checklist.pdf` - cross-service OWASP Top 10 (A01–A10) control findings, dependency audit status, and unresolved staging risks.
+- `testing/performance-report.pdf` - executed local benchmark evidence (FDS 1,800-request read benchmark), verified load-testing harnesses (HW, MAD, API Gateway, FOSS k6 specifications), and staging execution protocol.
 
-Each PDF contains a front consolidated interpretation and **bookmarks** for all six subsystems. Source PDFs are reproduced page-for-page without rewriting or omitting their entries. Every PDF is monochrome (black / white / grey) without colored components.
-
-## Supporting records
-
-- `testing/test-register-master.csv`: 295 original selected test rows combined into a normalized editable register. Every record stores source-case ID, original verbatim status, original row JSON and original CSV row number.
-- `source-evidence/<SUBSYSTEM>/`: original README, coverage notes, security notes and source test-register CSV from each uploaded ZIP (unaltered).
-- `SOURCE_MANIFEST.json`: source ZIP identifiers, cryptographic hashes, case counts and consolidated PDF assembly details.
+Each PDF contains a front consolidated interpretation and **bookmarks** for all **eight** top-level sections covering the overview, all six subsystems, and acceptance conditions. Every PDF is strictly monochrome (black / white / grey) without colored components.
 
 ## Interpretation and limitations
 
-- There are **250 source-listed cases linked to passing CI suites** and **45 not tested/not verified**. This is *not* the platform's total test-execution count or a signed six-service acceptance report.
-- Test and coverage snapshots differ in branch/date/commit. **Do not sum** FOSS historical `develop` and feature runs, infer one six-service release, or average heterogeneous coverage percentages.
-- FOSS and KMS source CSVs do not provide an explicit SRS requirement-ID column; the normalized CSV does not invent identifiers.
-- MAD's latest run passed reported tests but **failed overall** on backend high-severity dependency findings. KMS has no verified coverage metrics from the cited CI run. FOSS has measured results below the course's 80% coverage expectation.
-- All six security matrices are **provisional**; no system-wide OWASP certificate or signed penetration test is implied.
-- **There is no verified accepted common-system performance benchmark** (such as 100-concurrent-user API p95). MAD has a harness but no independently verified approved results. This performance PDF is an honest gap and plan, not proof that the threshold was met.
-- Before final university submission, obtain final release SHAs, new verified CI results, comprehensive vulnerability disposition, measured isolated performance tests, approval/sign-off, and consolidated integration/UAT proof.
+- There are **264 source-listed cases linked to passing CI suites** and **43 not tested/not verified** across **307 recorded register cases** (`33` HW + `58` MAD + `43` FDS + `54` FOSS + `82` KMS + `37` WKMS). Raw automated test execution across the organization now exceeds **4,700 passing automated checks**.
+- Test and coverage snapshots are identified by exact repository, branch, commit SHA, and GitHub Actions run ID as of **8 November 2026** alongside committed subsystem QA deliverable baselines. **Do not average** heterogeneous coverage percentages across different tools or denominators.
+- **Coverage highlights:**
+  - **HW (`develop` @ `5e3cd6bf32`):** Backend Jest `88.38%` stmts / `82.10%` branches / `87.14%` funcs / `88.39%` lines (`460` passed); PostgreSQL integration `79` passed (`7` skipped); Frontend Node `58` passed (`98.20%` branches / `99.63%` lines on `53` instrumented tests); Browser E2E (`3` journeys) & Quality (`48` checks) pass; Staging tooling `22` passed (`96.08%` branches / `100%` lines).
+  - **MAD (`development` @ `8b2c63f459`) & Shared Services:** Backend Jest `96.90%` stmts / `89.96%` branches / `90.02%` funcs / `96.90%` lines (`534` passed + `203` integration + `1` system); Frontend Vitest `92.90%` stmts / `89.28%` branches / `90.83%` funcs / `95.04%` lines (`341` passed + `8` Playwright E2E); all CI dependency audits pass (`0` high/critical vulnerabilities). Shared `api-gateway` (`39` passed, `95.27%` lines / `82.10%` branches), `websocket-service` (`36` passed, `96.19%` lines / `86.88%` branches), and `infra` (`19` passed) all pass CI.
+  - **FDS (`develop` @ `4b5ef57d4c`):** `949` passing CI tests (`531` BE unit [`93.43%` stmts / `84.25%` branches / `93.63%` lines], `56` PostgreSQL integration, `143` HTTP/Socket.IO E2E, `219` FE Jest [`88.51%` stmts / `80.09%` branches / `88.96%` lines]) and `0` npm audit vulnerabilities (`undici` `8.12.2`).
+  - **FOSS (`develop` @ `a69ba0a16c` / QA snapshot `9ac1e6f`):** Backend Jest `82.97%` stmts / `76.64%` branches / `83.33%` lines (`558` passed; `9ac1e6f` snapshot `84.63%` stmts / `78.67%` branches / `84.91%` lines; Critical Business Logic Core `96.10%` stmts / `84.21%` branches / `96.40%` lines across `28` suites / `312` tests); Backend E2E `237` passed (`5` skipped); Frontend Node test runner `269` passed (`1` skipped) across `81` suites.
+  - **KMS (`develop` @ `1f56edd2ff`):** Expanded from `76` to **`665` passing CI tests (`6` skipped)** across `123` passing suites (`234` BE unit, `58` BE E2E, `373` FE Jest) with `0` dependency vulnerabilities; CI `--coverage` instrumentation remains unconfigured.
+  - **WKMS (`develop` @ `1a33059c00`):** Expanded from `445` to **`649` passing CI tests (`43` skipped)** with enforced `>=80%` global branch and line gates: Backend Jest `88.72%` stmts / `85.45%` branches / `82.44%` funcs / `91.25%` lines (`400` passed); Frontend Jest `88.53%` stmts / `81.14%` branches / `91.50%` funcs / `89.74%` lines (`249` passed).
+- **Security & Performance:** All six security matrices remain **provisional** pending deployed staging TLS/WAF/penetration verification. FDS provides an executed local read-only HTTP benchmark (`15/15` cases passed across `1,800` measured requests, `0%` errors, max p95 `153.23 ms`, peak `1,016.85 req/s`); integrated multi-service 100/300-user staging load tests remain to be executed.
 - Do not publish secrets, tokens, guest data, raw payment data, or shared database credentials.
 
-## Source repositories
+## Source repositories (verified 8 November 2026)
 
-- **HW**: https://github.com/forever-hotel/hotel-website - snapshot: `pre-develop`, `606acf0674a18621639bce572ce3577af933cd63`, CI date 2026-10-22.
-- **MAD**: https://github.com/forever-hotel/manager-dashboard - snapshot: `development`, `bba65a0762286d4b0ac902865d7a2dd1e683e9c7`, CI date 2026-10-24/25.
-- **FDS**: https://github.com/forever-hotel/front-desk - snapshot: `develop`, `503465b7eb2c29b56cc2ec0d329d91d6b40853d4`, CI date 2026-10-24.
-- **FOSS**: https://github.com/forever-hotel/food-ordering - snapshot: `develop (historical) + separate feature`, `17af08411eedbed6431211a834af14b9af9e4e46; 343b7d0018`, CI date 2026-10-13.
-- **KMS**: https://github.com/forever-hotel/kitchen-management - snapshot: `develop`, `89087002ac2df8f07b6140c00111979c75bc2799`, CI date 2026-10-10.
-- **WKMS**: https://github.com/forever-hotel/worker-management - snapshot: `develop`, `0f91f1c9d6390c80c9f12f82b834fee9bf374104`, CI date 2026-10-25.
-
-## Original source PDF page totals (fully retained in the consolidated reports)
-
-| Subsystem | Coverage | Test register | OWASP | Performance |
-|---|---:|---:|---:|---:|
-| HW | 2 | 19 | 4 | 3 |
-| MAD | 2 | 31 | 3 | 2 |
-| FDS | 2 | 24 | 3 | 2 |
-| FOSS | 2 | 7 | 2 | 2 |
-| KMS | 2 | 15 | 2 | 2 |
-| WKMS | 2 | 21 | 4 | 3 |
+- **HW**: https://github.com/forever-hotel/hotel-website - `develop` @ `5e3cd6bf323bc005e9efb86b5e09ba0e3015e727` (QA snapshot `63673ba704b4ae645a8f067e246309b6fb0f03d0`), CI date 2026-11-08 (Runs `42504096480`, `42504096452`, `42500427127`).
+- **MAD**: https://github.com/forever-hotel/manager-dashboard - `development` @ `8b2c63f459a93c217eb7cb502a2500e80181aa6e`, CI date 2026-11-08 (Runs `42480400290`, `42504148805`).
+- **Shared Services**:
+  - https://github.com/forever-hotel/api-gateway - `develop` @ `7c00d39edd`, CI date 2026-11-08 (Run `42504067779`).
+  - https://github.com/forever-hotel/websocket-service - `development` @ `f12ef41ba9`, CI date 2026-11-08 (Run `42504249365`).
+  - https://github.com/forever-hotel/infra - `development` @ `e3e17fcaac`, CI date 2026-11-08 (Run `42501357369`).
+- **FDS**: https://github.com/forever-hotel/front-desk - `develop` @ `4b5ef57d4c4ce03c9ab2fe78f42b94eff96838cd` (QA branch `feature/84-fds-final-qa-evidence` @ `e590326` / `1065617` / `a6050dd`), CI date 2026-11-08 (Runs `42506217082`, `42506217056`).
+- **FOSS**: https://github.com/forever-hotel/food-ordering - `develop` @ `a69ba0a16ca941b783633427e5e31348bf681f17` (QA snapshot `9ac1e6f3df9f93ee76be6db479dc8c4bf6529328`), CI date 2026-11-08 (Runs `42490527447`, `41833172660`).
+- **KMS**: https://github.com/forever-hotel/kitchen-management - `develop` @ `1f56edd2ff1166c61d34daae3bdcc6809ab9ef02`, CI date 2026-11-08 (Run `42502180570`).
+- **WKMS**: https://github.com/forever-hotel/worker-management - `develop` @ `1a33059c0005752ca709ca91ab11067dc6cff55a`, CI date 2026-11-08 (Runs `42504698971`, `42504970394`).
